@@ -1,0 +1,149 @@
+﻿#include "iniparser/iniparser.h"
+#include "iniparsertest.h"
+
+void create_example_ini_file(void)
+{
+    FILE    *   ini ;
+
+    if ((ini=fopen("example.ini", "w"))==NULL) {
+        fprintf(stderr, "iniparser: cannot create example.ini\n");
+        return ;
+    }
+
+    fprintf(ini,
+    "#\n"
+    "# This is an example of ini file\n"
+    "#\n"
+    "\n"
+    "[Pizza]\n"
+    "\n"
+    "Ham       = yes ;\n"
+    "Mushrooms = TRUE ;\n"
+    "Capres    = 0 ;\n"
+    "Cheese    = Non ;\n"
+    "\n"
+    "\n"
+    "[Wine]\n"
+    "\n"
+    "Grape     = Cabernet Sauvignon ;\n"
+    "Year      = 1989 ;\n"
+    "Country   = Spain ;\n"
+    "Alcohol   = 12.5  ;\n"
+    "\n");
+    fclose(ini);
+}
+
+
+int parse_ini_file(char * ini_name)
+{
+    dictionary  *   ini ;
+
+    /* Some temporary variables to hold query results */
+    int             b ;
+    int             i ;
+    double          d ;
+    const char  *   s ;
+
+    ini = iniparser_load(ini_name);
+    if (ini==NULL) {
+        fprintf(stderr, "cannot parse file: %s\n", ini_name);
+        return -1 ;
+    }
+    iniparser_dump(ini, stderr);
+
+    /* Get pizza attributes */
+    printf("Pizza:\n");
+
+    b = iniparser_getboolean(ini, "pizza:ham", -1);
+    printf("Ham:       [%d]\n", b);
+    b = iniparser_getboolean(ini, "pizza:mushrooms", -1);
+    printf("Mushrooms: [%d]\n", b);
+    b = iniparser_getboolean(ini, "pizza:capres", -1);
+    printf("Capres:    [%d]\n", b);
+    b = iniparser_getboolean(ini, "pizza:cheese", -1);
+    printf("Cheese:    [%d]\n", b);
+
+    /* Get wine attributes */
+    printf("Wine:\n");
+    s = iniparser_getstring(ini, "wine:grape", NULL);
+    printf("Grape:     [%s]\n", s ? s : "UNDEF");
+
+    i = iniparser_getint(ini, "wine:year", -1);
+    printf("Year:      [%d]\n", i);
+
+    s = iniparser_getstring(ini, "wine:country", NULL);
+    printf("Country:   [%s]\n", s ? s : "UNDEF");
+
+    d = iniparser_getdouble(ini, "wine:alcohol", -1.0);
+    printf("Alcohol:   [%g]\n", d);
+
+    fflush(stdout);
+
+    iniparser_freedict(ini);
+    return 0 ;
+}
+
+//int main(int argc, char * argv[])
+//{
+//    dictionary * ini ;
+//    char       * ini_name ;
+
+//    if (argc<2) {
+//        ini_name = "twisted.ini";
+//    } else {
+//        ini_name = argv[1] ;
+//    }
+
+//    ini = iniparser_load(ini_name);
+//    iniparser_dump(ini, stdout);
+//    iniparser_freedict(ini);
+
+//    return 0 ;
+//}
+
+void create_ini_file(void)
+{
+    FILE *ini;
+
+    if ((ini=fopen("archive.ini", "w"))==NULL) {
+        fprintf(stderr, "iniparser: cannot create example.ini\n");
+        return ;
+    }
+
+    fprintf(ini,
+    "\n"
+    "[Version]\n"
+    "Version   = 1.0.0.8 \n"
+    "BuildTime = 20190318 \n"
+    "Author    = William.Yu \n"
+    "\n"
+    "\n"
+    "[Status]\n"
+    "PowerControl                    =800\n"
+    "SecuritySafe                    =800\n"
+    "WindowControl                   =800\n"
+    "CurtainControl                  =800\n"
+    "EntranceGuard                   =800\n"
+    "MediaControl                    =800\n"
+    "AirConditionerControl           =800\n"
+    "VentilationControl              =800\n"
+    "HeatingControl                  =800\n"
+    "DoorMagneticInduction           =800\n"
+    "InfraredInduction               =800\n"
+    "SmokeInduction                  =800\n"
+    "CombustibleGasInduction         =800\n"
+    "CarbonMonoxideInduction         =800\n"
+    "WaterImmersionInduction         =800\n"
+    "AlarmKey                        =800\n"
+    "AlarmTempHumidity               =800\n"
+    "AlarmSoundLight                 =800\n"
+    "AlarmRemoteControl              =800\n"
+    "DimmerControl                   =800\n"
+    "ScenePanel                      =800\n"
+    "WirelessRepeater                =800\n"
+    "IrRepeater                      =800\n"
+    "\n");
+
+    fclose(ini);
+}
+

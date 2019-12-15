@@ -1,0 +1,14 @@
+*.user
+*.swp
+*.temp
+*.tmp
+*.o
+*.obj
+*.stash
+*.Debug
+*.Release
+build/
+debug/
+release/
+static_build/
+

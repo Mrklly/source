@@ -1,0 +1,14 @@
+output/
+*.bin
+*.cv
+*.dbg
+*.list
+*.map
+*.mem
+*.mtp
+*.tsk
+*.lst
+#*.obj
+*.pjt
+*.pjw
+

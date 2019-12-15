@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/connect.png</file>
+        <file>images/disconnect.png</file>
+        <file>images/application-exit.png</file>
+        <file>images/settings.png</file>
+        <file>images/clear.png</file>
+        <file>PanelConfig.ico</file>
+        <file>images/panel/QB5021.jpg</file>
+        <file>images/panel/QB5022.jpg</file>
+        <file>images/panel/QB5023.jpg</file>
+        <file>images/panel/QB5024.jpg</file>
+        <file>images/panel/QB5025.jpg</file>
+        <file>images/panel/QB5026.jpg</file>
+        <file>images/panel/QB5224.jpg</file>
+        <file>images/panel/QB5226.jpg</file>
+        <file>images/panel/QB8111.jpg</file>
+        <file>images/panel/QB8114.jpg</file>
+    </qresource>
+</RCC>
